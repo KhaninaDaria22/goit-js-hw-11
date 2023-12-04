@@ -33,10 +33,6 @@ function observerScroll(entries, observer) {
 
       getTrending()
         .then(resp => {
-          Notiflix.Notify.info(
-            `Hooray! We found ${resp.data.totalHits - currentPage * 40} images.`
-          );
-
           gallery.insertAdjacentHTML('beforeend', createMarkup(resp.data.hits));
           lightbox.refresh();
           const { height: cardHeight } =
@@ -72,6 +68,10 @@ async function onSubmit(e) {
       'Sorry, there are no images matching your search query. Please try again.'
     );
   }
+  Notiflix.Notify.info(
+    `Hooray! We found ${response.data.totalHits} images.`
+  );
+  
   gallery.innerHTML = createMarkup(dataArray);
 
   lightbox.refresh();
